@@ -1,5 +1,3 @@
-### ubuntu18.04_operation_records_chenzedu
-
 1. 如果安装的中文版，则将Ubuntu主文件夹里的中文文件夹名称改成英文
 
    首先修改现有主文件夹下各文件夹名称为：
