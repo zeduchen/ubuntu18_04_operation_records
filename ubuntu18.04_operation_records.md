@@ -291,7 +291,7 @@
     sudo apt install goldendict
     ```
 
-    安装后导入美国传统英汉双解学习词典.mdx，新牛津英汉双解大词典.mdx。
+    安装后导入下载好的词典：`美国传统英汉双解学习词典.mdx`，`新牛津英汉双解大词典.mdx`。
 
 19. 安装有道词典
 
@@ -318,7 +318,11 @@
     
     ```
 
-23. 安装Sublime Text 3
+23. 安装Visual Studio Code
+
+    从[官网](https://code.visualstudio.com/)下载安装即可。
+
+24. 安装Sublime Text 3
 
     按照[链接](https://www.sublimetext.com/docs/3/linux_repositories.html)安装，安装后不能输入中文解决办法：
 
@@ -328,7 +332,7 @@
     
     ```
 
-24. 安装网易云音乐
+25. 安装网易云音乐
 
     按照[链接](https://blog.csdn.net/weixin_40993826/article/details/80343032)的方法安装。
 
@@ -355,19 +359,19 @@
     
     ```
 
-25. 安装Teamviewer
+26. 安装Teamviewer
 
     [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。
 
-26. 安装QQ、WeChat、Tim
+27. 安装QQ、WeChat、Tim
 
     按照[链接](https://github.com/wszqkzqk/deepin-wine-ubuntu)安装。
 
-27. 安装VLC视频播放器
+28. 安装VLC视频播放器
 
     从应用商店`Ubuntu 软件`搜索`VLC`下载安装。
 
-28. 安装Persepolis，下载工具
+29. 安装Persepolis，下载工具
 
     ```
     sudo add-apt-repository ppa:persepolis/ppa
@@ -378,13 +382,13 @@
 
     Chrome安装扩展程序：`Persepolis Download Manager Integration`。
 
-29. 安装curl
+30. 安装curl
 
     ```
     sudo apt install curl
     ```
 
-30. 系统备份
+31. 系统备份
 
     参照[链接](https://blog.csdn.net/qq_35523593/article/details/78545530)，用root用户和切换到根目录。
 
