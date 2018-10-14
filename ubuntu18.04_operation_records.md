@@ -66,7 +66,7 @@
 
 5. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
 
-   1. 先用系统的gcc-7安装驱动，基本步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda9.1。
+   1. 先用系统的gcc-7安装驱动，基本步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda9.0。
 
    2. 给GCC、G++降级，安装`GCC-4.8`和`G++-4.8`：
 
@@ -93,9 +93,29 @@
 
    3. 安装Cuda9.0和对应版本cuDNN
 
-      基本步骤和[链接](https://blog.csdn.net/ksws0292756/article/details/80120561)里的类似，不过安装的Cuda是9.0版本。下载Cuda9.0的时候下载.run文件。安装Cuda9.0的时候，有个是问是否安装NVIDIA驱动的，前面已经安装过了，所以选择no，如果安装的是第一个cuda则软链接（symbolic link）可选yes，否则选no。
+      逛完下载Cuda9.0，下载Cuda9.0的时候下载`runfile (local)`（.run文件）。安装Cuda9.0的时候，有个是问是否安装NVIDIA驱动的，前面已经安装过了，所以选择`no`，如果要将当前安装的cuda9.0设置为当前环境的版本，则创建软链接（symbolic link）选项可选`yes`，否则选`no`。
 
-      下载cuDNN的时候下载Library for Linux版本，下载后解压：
+      赋予可执行权限：
+
+      ```
+      chmod +x cuda_9.0.176_384.81_linux.run
+      chmod +x cuda_9.0.176.1_linux.run
+      chmod +x cuda_9.0.176.2_linux.run
+      chmod +x cuda_9.0.176.3_linux.run
+      chmod +x cuda_9.0.176.4_linux.run
+      ```
+
+      安装Cuda9.0：
+
+      ```
+      sudo ./cuda_9.0.176_384.81_linux.run
+      sudo ./cuda_9.0.176.1_linux.run
+      sudo ./cuda_9.0.176.2_linux.run
+      sudo ./cuda_9.0.176.3_linux.run
+      sudo ./cuda_9.0.176.4_linux.run
+      ```
+
+      Cuda9.0对应的cuDNN有多个版本，根据需要选择版本，下载cuDNN的时候选择`Library for Linux`文件，下载后解压：
 
       ```
       tar -xzvf cudnn-9.0-linux-x64-v7.3.1.20.tgz
@@ -128,13 +148,24 @@
       source ~/.bashrc
       ```
 
-      不需要了之后，卸载命令：
+   4. 安装Cuda8.0和对应版本cuDNN
+
+      安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-8.0`里。
+
+      查看当前系统Cuda环境：
 
       ```
-      sudo /usr/local/cuda-9.0/bin/uninstall_cuda_9.0.pl
+      nvcc -V
       ```
 
-   4. 安装Cuda7.5对应版本cuDNN
+      切换系统Cuda环境到`cuda-8.0`：
+
+      ```
+      sudo rm -rf /usr/local/cuda
+      sudo ln -s /usr/local/cuda-8.0 /usr/local/cuda
+      ```
+
+   5. 安装Cuda7.5和对应版本cuDNN
 
       正常步骤安装Cuda7.5会失败，原因是缺乏安装工具。故安装前需把`cuda_7.5.18_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
 
@@ -144,13 +175,7 @@
       export $PERL5LIB
       ```
 
-      之后就可以和Cuda9.0一样安装了，注意软链接（symbolic link）选择no。cudnn复制到文件夹`cuda-7.5`。
-
-      不需要了之后，卸载命令：
-
-      ```
-      sudo /usr/local/cuda-7.5/bin/uninstall_cuda_7.5.pl
-      ```
+      之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-8.0`里。
 
 6. 安装Anaconda3
 
