@@ -259,6 +259,67 @@
 
     还是全局翻墙。按照[链接](https://blog.csdn.net/yucicheung/article/details/79332049)里给Chrome下载配置SwitchOmega后Chrome可以PAC翻墙。
 
+    在终端查看IP地址和位置信息：
+
+    ```
+    curl ip.gs
+    ```
+
+    终端设置代理：
+
+    安装`polipo`：
+
+    ```
+    sudo apt install polipo
+    ```
+
+    修改`polipo`配置文件：
+
+    ```
+    sudo vim /etc/polipo/config
+    ```
+
+    末尾添加：
+
+    ```
+    socksParentProxy = "localhost:1080"
+    socksProxyType = socks5
+    logLevel=4
+    ```
+
+    关闭和启动polipo：
+
+    ```
+    sudo service polipo stop
+    sudo service polipo start
+    ```
+
+    添加到配置文件：
+
+    ```
+    vim ~/.bashrc
+    ```
+
+    末尾添加：
+
+    ```
+    export http_proxy=http://localhost:8123
+    export https_proxy=https://localhost:8123
+    ```
+
+    使配置生效：
+
+    ```
+    source ~/.bashrc
+    ```
+
+    Git设置代理：
+
+    ```
+    git config --global http.proxy "socks5://127.0.0.1:1080"
+    git config --global https.proxy "socks5://127.0.0.1:1080"
+    ```
+
 14. 安装gnome-tweak，优化
 
     ```
