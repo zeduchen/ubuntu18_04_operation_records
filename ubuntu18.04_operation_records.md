@@ -66,7 +66,7 @@
 
 5. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
 
-   1. 先用系统的gcc-7安装驱动，基本步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
+   1. 先用系统的gcc-7安装驱动，驱动安装步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
 
    2. 给GCC、G++降级，安装`GCC-4.8`和`G++-4.8`：
 
@@ -150,7 +150,15 @@
 
    4. 安装Cuda8.0和对应版本cuDNN
 
-      安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-8.0`里。
+      正常步骤安装Cuda8.0会失败，原因是缺乏安装工具。故安装前需把`cuda_8.0.61_375.26_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
+
+      ```
+      sh ./cuda_8.0.61_375.26_linux.run --tar mxvf
+      sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/
+      export $PERL5LIB
+      ```
+
+      之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-8.0`里。
 
       查看当前系统Cuda环境：
 
@@ -175,11 +183,30 @@
       export $PERL5LIB
       ```
 
-      之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-8.0`里。
+      之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-7.5`里。
+
+      查看当前系统Cuda环境：
+
+      ```
+      nvcc -V
+      ```
+
+      切换系统Cuda环境到`cuda-7.5`：
+
+      ```
+      sudo rm -rf /usr/local/cuda
+      sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
+      ```
 
 6. 安装Anaconda3
 
-   按照[链接](https://docs.anaconda.com/anaconda/install/linux)安装,换成清华大学的镜像源：
+   从[官网](https://docs.anaconda.com/anaconda/install/linux)下载，安装：
+
+   ```
+   bash Anaconda3-5.2.0-Linux-x86_64.sh
+   ```
+
+   换成清华大学的镜像源：
 
    ```
    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
