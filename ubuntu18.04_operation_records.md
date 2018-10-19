@@ -66,7 +66,7 @@
 
 5. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
 
-   1. 先用系统的gcc-7安装驱动，基本步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda9.0。
+   1. 先用系统的gcc-7安装驱动，基本步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
 
    2. 给GCC、G++降级，安装`GCC-4.8`和`G++-4.8`：
 
