@@ -422,7 +422,7 @@
 
 21. 安装PyCharm
 
-    用教育邮箱在[官网](https://www.jetbrains.com/student/)申请学生礼包，下载，解压到`/usr/local`下，按照`Install-Linux-tar.txt`安装即可，在设置里勾选`Create desktop entry`。
+    用教育邮箱在[官网](https://www.jetbrains.com/student/)申请学生礼包，下载、解压，按照`Install-Linux-tar.txt`安装即可，在设置里勾选`Create desktop entry`。
 
 22. 安装Git
 
