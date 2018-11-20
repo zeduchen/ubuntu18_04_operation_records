@@ -263,89 +263,107 @@
 
 13. 安装electron-ssr
 
-    需要系统可正常执行`shadowsocksr`的Python版，因此需要安装Python2：
+    1. 安装Python2
 
-    ```
-    sudo apt install python-minimal
-    ```
+       需要系统可正常执行`shadowsocksr`的Python版，因此需要安装Python2：
 
-    从[链接](https://github.com/erguotou520/electron-ssr)下载electron-ssr，用gdebi安装electron-ssr:
+       ```
+       sudo apt install python-minimal
+       ```
 
-    ```
-    sudo gdebi electron-ssr_0.2.3_amd64.deb
-    ```
+    2. 安装electron-ssr
 
-    安装后在系统`设置`-->`网络`-->`网络代理` ，设置为`手动`：
+       从[链接](https://github.com/erguotou520/electron-ssr)下载electron-ssr，安装electron-ssr:
 
-    | **HTTP代理**  |                               | **0**    |
-    | ------------- | ----------------------------- | -------- |
-    | **HTTPS代理** |                               | **0**    |
-    | **FTP代理**   |                               | **0**    |
-    | **Socks主机** | **127.0.0.1**                 | **1080** |
-    | **忽略主机**  | **localhost,127.0.0.0/8,::1** |          |
+       ```
+       sudo gdebi electron-ssr_0.2.4_amd64.deb
+       ```
 
-    还是全局翻墙。按照[链接](https://blog.csdn.net/yucicheung/article/details/79332049)里给Chrome下载配置SwitchOmega后Chrome可以PAC翻墙。
+       安装后即可打开配置ssr账号。
 
-    在终端查看IP地址和位置信息：
+    3. 配置PAC模式
 
-    ```
-    curl ip.gs
-    ```
+       安装后在系统`设置`-->`网络`-->`网络代理` ，设置为`手动`：
 
-    终端设置代理：
+       | HTTP代理**    |                               | **0**    |
+       | ------------- | ----------------------------- | -------- |
+       | **HTTPS代理** |                               | **0**    |
+       | **FTP代理**   |                               | **0**    |
+       | **Socks主机** | **127.0.0.1**                 | **1080** |
+       | **忽略主机**  | **localhost,127.0.0.0/8,::1** |          |
 
-    安装`polipo`：
+       还是全局翻墙。下载[SwitchOmega](https://github.com/FelisCatus/SwitchyOmega/releases)。Chrome扩展程序页面打开开发者模式，重启Chrome，把`SwitchyOmega_Chromium.crx`文件拖到浏览器扩展程序页面安装，安装后关闭开发者模式。之后安装[链接](https://www.switchyomega.com/settings/)配置SwitchyOmega。
 
-    ```
-    sudo apt install polipo
-    ```
+    4. 终端和Git翻墙
 
-    修改`polipo`配置文件：
+       在终端查看IP地址和位置信息：
 
-    ```
-    sudo vim /etc/polipo/config
-    ```
+       ```
+       curl ip.gs
+       
+       ```
 
-    末尾添加：
+       终端设置代理：
 
-    ```
-    socksParentProxy = "localhost:1080"
-    socksProxyType = socks5
-    logLevel=4
-    ```
+       安装`polipo`：
 
-    关闭和启动polipo：
+       ```
+       sudo apt install polipo
+       
+       ```
 
-    ```
-    sudo service polipo stop
-    sudo service polipo start
-    ```
+       修改`polipo`配置文件：
 
-    添加到配置文件：
+       ```
+       sudo vim /etc/polipo/config
+       
+       ```
 
-    ```
-    vim ~/.bashrc
-    ```
+       末尾添加：
 
-    末尾添加：
+       ```
+       socksParentProxy = "localhost:1080"
+       socksProxyType = socks5
+       logLevel=4
+       
+       ```
 
-    ```
-    export http_proxy=http://localhost:8123
-    export https_proxy=https://localhost:8123
-    ```
+       关闭和启动polipo：
 
-    使配置生效：
+       ```
+       sudo service polipo stop
+       sudo service polipo start
+       
+       ```
 
-    ```
-    source ~/.bashrc
-    ```
+       添加到配置文件：
 
-    Git设置代理：
+       ```
+       vim ~/.bashrc
+       
+       ```
 
-    ```
-    git config --global http.proxy "socks5://127.0.0.1:1080"
-    git config --global https.proxy "socks5://127.0.0.1:1080"
-    ```
+       末尾添加：
+
+       ```
+       export http_proxy=http://localhost:8123
+       export https_proxy=https://localhost:8123
+       
+       ```
+
+       使配置生效：
+
+       ```
+       source ~/.bashrc
+       
+       ```
+
+       Git设置代理：
+
+       ```
+       git config --global http.proxy "socks5://127.0.0.1:1080"
+       git config --global https.proxy "socks5://127.0.0.1:1080"
+       ```
 
 14. 安装gnome-tweak，优化
 
