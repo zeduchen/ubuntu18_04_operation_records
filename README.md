@@ -23,7 +23,47 @@
    XDG_VIDEOS_DIR="$HOME/videos"
    ```
 
-2. 修改镜像源
+2. 如果安装的英文版，则修复Ubuntu英文环境汉字显示
+
+   英文系统环境下部分汉字被显示为日文汉字形式，原因是日语汉字优先于中文汉字的显示。在`/etc/fonts/conf.avail/64-language-selector-prefer.conf` 文件中配置中：
+
+   ```
+   <?xml version="1.0"?>
+   <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+   <fontconfig>
+           <alias>
+                   <family>sans-serif</family>
+                   <prefer>
+                           <family>Noto Sans CJK JP</family>
+                           <family>Noto Sans CJK KR</family>
+                           <family>Noto Sans CJK SC</family>
+                           <family>Noto Sans CJK TC</family>
+                   </prefer>
+           </alias>
+           <alias>
+                   <family>serif</family>
+                   <prefer>
+                           <family>Noto Serif CJK JP</family>
+                           <family>Noto Serif CJK KR</family>
+                           <family>Noto Serif CJK SC</family>
+                           <family>Noto Serif CJK TC</family>
+                   </prefer>
+           </alias>
+           <alias>
+                   <family>monospace</family>
+                   <prefer>
+                           <family>Noto Sans Mono CJK JP</family>
+                           <family>Noto Sans Mono CJK KR</family>
+                           <family>Noto Sans Mono CJK SC</family>
+                           <family>Noto Sans Mono CJK TC</family>
+                   </prefer>
+           </alias>
+   </fontconfig>
+   ```
+
+   `<family>Noto Sans CJK JP</family>`优先于`<family>Noto Sans CJK SC</family>`，将它们的位置互换即可。
+
+3. 修改镜像源
 
    备份:
 
@@ -49,13 +89,13 @@
    # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
    ```
 
-3. 安装Vim
+4. 安装Vim
 
    ```
    sudo apt install vim
    ```
 
-4. 安装Typora，Markdown编辑器
+5. 安装Typora，Markdown编辑器
 
    ```
    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
@@ -64,7 +104,7 @@
    sudo apt install typora
    ```
 
-5. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
+6. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
 
    1. 先用系统的gcc-7安装驱动，驱动安装步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
 
@@ -198,7 +238,7 @@
       sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
       ```
 
-6. 安装Anaconda3
+7. 安装Anaconda3
 
    从[官网](https://docs.anaconda.com/anaconda/install/linux)下载，安装：
 
@@ -214,7 +254,7 @@
    conda config --set show_channel_urls yes
    ```
 
-7. 安装Pytorch
+8. 安装Pytorch
 
    在官网选对应版本Pytorch后会有安装命令，Linux+conda+3.6+9.1的命令是：
 
@@ -222,21 +262,21 @@
    conda install pytorch torchvision cuda91 -c pytorch
    ```
 
-8. 安装MATLAB R2016b
+9. 安装MATLAB R2016b
 
    按照[链接](https://blog.csdn.net/zyqblog/article/details/78938760)安装。
 
-9. 安装MatConvNet
+10. 安装MatConvNet
 
    从[链接](http://www.vlfeat.org/matconvnet/)下载`matconvnet-1.0-beta25.tar`并解压，按照[链接](https://blog.csdn.net/breeze5428/article/details/42242761)安装。
 
-10. 安装工具gdebi
+11. 安装工具gdebi
 
     ```
     sudo apt install gdebi
     ```
 
-11. 安装搜狗输入法
+12. 安装搜狗输入法
 
     1. 安装fcitx
 
@@ -252,7 +292,7 @@
        sudo gdebi sogoupinyin_2.2.0.0108_amd64.deb
        ```
 
-12. 安装Chrome
+13. 安装Chrome
 
     ```
     sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
@@ -261,7 +301,7 @@
     sudo apt install google-chrome-stable
     ```
 
-13. 安装electron-ssr
+14. 安装electron-ssr
 
     1. 安装Python2
 
@@ -357,13 +397,13 @@
        git config --global https.proxy "socks5://127.0.0.1:1080"
        ```
 
-14. 安装gnome-tweak，优化
+15. 安装gnome-tweak，优化
 
     ```
     sudo apt install gnome-tweak-tool
     ```
 
-15. 安装Gnome Shell Extensions
+16. 安装Gnome Shell Extensions
 
     用Firefox浏览器（Chrome浏览器不会提示安装）打开[链接](https://extensions.gnome.org)，按照提示安装浏览器插件GNOME Shell integration，之后安装chrome-gnome-shell：
 
@@ -391,7 +431,7 @@
 
     [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
 
-16. 安装Gnome Pie，快捷启动器
+17. 安装Gnome Pie，快捷启动器
 
     ```
     sudo add-apt-repository ppa:simonschneegans/testing
@@ -399,7 +439,7 @@
     sudo apt install gnome-pie
     ```
 
-17. 安装Okular，PDF阅读器
+18. 安装Okular，PDF阅读器
 
     ```
     sudo apt install okular
@@ -407,7 +447,7 @@
 
     配置Google 翻译：按`Ctrl + 4`（切换成文本选择工具），选择一个字或词右击，选择网页配置网页快捷方式，新建`Google 翻译`，速搜网址`https://translate.google.com/#auto/zh-CN/\{@}`，搜索关键字随便填`t`即可。之后拉大设置框，把`Google 翻译`设为首选，取消其他不需要的选项。重启才生效。
 
-18. 安装GoldDict词典
+19. 安装GoldDict词典
 
     ```
     sudo apt install goldendict
@@ -415,7 +455,7 @@
 
     安装后导入下载好的词典：`美国传统英汉双解学习词典.mdx`，`新牛津英汉双解大词典.mdx`。
 
-19. 安装有道词典
+20. 安装有道词典
 
     获取[链接](https://github.com/yomun/youdaodict_5.5)里提供的版本：
 
@@ -425,25 +465,25 @@
 
     直接安装。
 
-20. 安装WPS
+21. 安装WPS
 
     按照[链接](https://www.jianshu.com/p/3407c18e1337)里安装。
 
-21. 安装PyCharm
+22. 安装PyCharm
 
     用教育邮箱在[官网](https://www.jetbrains.com/student/)申请学生礼包，下载、解压，按照`Install-Linux-tar.txt`安装即可，在设置里勾选`Create desktop entry`。
 
-22. 安装Git
+23. 安装Git
 
     ```
     sudo apt install git
     ```
 
-23. 安装Visual Studio Code
+24. 安装Visual Studio Code
 
     从[官网](https://code.visualstudio.com/)下载安装即可。
 
-24. 安装Sublime Text 3
+25. 安装Sublime Text 3
 
     按照[链接](https://www.sublimetext.com/docs/3/linux_repositories.html)安装，安装后不能输入中文解决办法：
 
@@ -452,7 +492,7 @@
     cd sublime-text-imfix && ./sublime-imfix
     ```
 
-25. 安装网易云音乐
+26. 安装网易云音乐
 
     按照[链接](https://blog.csdn.net/weixin_40993826/article/details/80343032)的方法安装。
 
@@ -476,19 +516,19 @@
     Exec=env LD_LIBRARY_PATH=/opt/Qt5.8.0/5.8/gcc_64/lib netease-cloud-music %U --no-sandbox
     ```
 
-26. 安装Teamviewer
+27. 安装Teamviewer
 
     [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。
 
-27. 安装QQ、WeChat、Tim
+28. 安装QQ、WeChat、Tim
 
     按照[链接](https://github.com/wszqkzqk/deepin-wine-ubuntu)安装。
 
-28. 安装VLC视频播放器
+29. 安装VLC视频播放器
 
     从应用商店`Ubuntu 软件`搜索`VLC`下载安装。
 
-29. 安装Persepolis，下载工具
+30. 安装Persepolis，下载工具
 
     ```
     sudo add-apt-repository ppa:persepolis/ppa
@@ -498,13 +538,13 @@
 
     Chrome安装扩展程序：`Persepolis Download Manager Integration`。
 
-30. 安装curl
+31. 安装curl
 
     ```
     sudo apt install curl
     ```
 
-31. 系统备份
+32. 系统备份
 
     参照[链接](https://blog.csdn.net/qq_35523593/article/details/78545530)，用root用户和切换到根目录。
 
