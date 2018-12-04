@@ -2,7 +2,7 @@
 
    首先修改现有主文件夹下各文件夹名称为：
 
-   `desktop` `documents` `downloads` `music` `pictures` `public` `templates` `videos`
+   `Desktop` `Documents` `Downloads` `Music` `Pictures` `Public` `Templates` `Videos`
 
    然后编辑配置文件：
 
@@ -13,14 +13,14 @@
    把文件夹指向改掉：
 
    ```
-   XDG_DESKTOP_DIR="$HOME/desktop"
-   XDG_DOWNLOAD_DIR="$HOME/downloads"
-   XDG_TEMPLATES_DIR="$HOME/templates"
-   XDG_PUBLICSHARE_DIR="$HOME/public"
-   XDG_DOCUMENTS_DIR="$HOME/documents"
-   XDG_MUSIC_DIR="$HOME/music"
-   XDG_PICTURES_DIR="$HOME/pictures"
-   XDG_VIDEOS_DIR="$HOME/videos"
+   XDG_DESKTOP_DIR="$HOME/Desktop"
+   XDG_DOWNLOAD_DIR="$HOME/Downloads"
+   XDG_TEMPLATES_DIR="$HOME/Templates"
+   XDG_PUBLICSHARE_DIR="$HOME/Public"
+   XDG_DOCUMENTS_DIR="$HOME/Documents"
+   XDG_MUSIC_DIR="$HOME/Music"
+   XDG_PICTURES_DIR="$HOME/Pictures"
+   XDG_VIDEOS_DIR="$HOME/Videos"
    ```
 
 2. 如果安装的英文版，则修复Ubuntu英文环境汉字显示
