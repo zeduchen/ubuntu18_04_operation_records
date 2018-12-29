@@ -300,7 +300,6 @@
 
        ```
        curl ip.gs
-       
        ```
 
        终端设置代理：
@@ -309,14 +308,12 @@
 
        ```
        sudo apt install polipo
-       
        ```
 
        修改`polipo`配置文件：
 
        ```
        sudo vim /etc/polipo/config
-       
        ```
 
        末尾添加：
@@ -325,7 +322,6 @@
        socksParentProxy = "localhost:1080"
        socksProxyType = socks5
        logLevel=4
-       
        ```
 
        关闭和启动polipo：
@@ -333,14 +329,12 @@
        ```
        sudo service polipo stop
        sudo service polipo start
-       
        ```
 
        添加到配置文件：
 
        ```
        vim ~/.bashrc
-       
        ```
 
        末尾添加：
@@ -348,14 +342,12 @@
        ```
        export http_proxy=http://localhost:8123
        export https_proxy=https://localhost:8123
-       
        ```
 
        使配置生效：
 
        ```
        source ~/.bashrc
-       
        ```
 
        Git设置代理：
@@ -377,7 +369,6 @@
 
     ```
     sudo apt install chrome-gnome-shell
-    
     ```
 
     之后就可以安装想安装的Gnome Shell Extensions:
@@ -446,7 +437,6 @@
 
     ```
     sudo apt install git
-    
     ```
 
 23. 安装Visual Studio Code
@@ -460,7 +450,6 @@
     ```
     git clone https://github.com/lyfeyaj/sublime-text-imfix.git
     cd sublime-text-imfix && ./sublime-imfix
-    
     ```
 
 25. 安装网易云音乐
@@ -473,21 +462,18 @@
     wget http://download.qt.io/archive/qt/5.8/5.8.0/qt-opensource-linux-x64-5.8.0.run
     chmod +x qt-opensource-linux-x64-5.8.0.run
     sudo ./qt-opensource-linux-x64-5.8.0.run
-    
     ```
 
     然后弹出安装界面，一直默认，最后：
 
     ```
-    vim /usr/share/applications/netease-cloud-music.desktop
-    
+    sudo vim /usr/share/applications/netease-cloud-music.desktop
     ```
 
     将`Exec`行改为：
 
     ```
     Exec=env LD_LIBRARY_PATH=/opt/Qt5.8.0/5.8/gcc_64/lib netease-cloud-music %U --no-sandbox
-    
     ```
 
 26. 安装Teamviewer
@@ -508,7 +494,6 @@
     sudo add-apt-repository ppa:persepolis/ppa
     sudo apt update
     sudo apt install persepolis
-    
     ```
 
     Chrome安装扩展程序：`Persepolis Download Manager Integration`。
@@ -527,21 +512,18 @@
 
     ```
     tar -cvpzf /media/ubuntu_backup_`date +%Y%m%d`.tar.gz --exclude=/proc --exclude=/tmp --exclude=/boot --exclude=/home --exclude=/lost+found --exclude=/media --exclude=/mnt --exclude=/run /
-    
     ```
 
     `/boot`备份：
 
     ```
     tar -cvpzf /media/ubuntu_boot_backup_`date +%Y%m%d`.tar.gz /boot
-    
     ```
 
     `/home`备份：
 
     ```
     tar -cvpzf /media/ubuntu_home_backup_`date +%Y%m%d`.tar.gz /home
-    
     ```
 
     有可能备份到最后系统会提示”tar: 由于前次错误,将以上次的错误状态退出”，这个警告可以忽略，没什么影响的。
