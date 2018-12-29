@@ -427,7 +427,7 @@
 
     [Show Desktop Button](https://extensions.gnome.org/extension/1194/show-desktop-button/)
 
-    [TopIcons Plus](https://extensions.gnome.org/extension/1031/topicons/)
+    [TopIcons](https://extensions.gnome.org/extension/495/topicons/)
 
     [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
 
