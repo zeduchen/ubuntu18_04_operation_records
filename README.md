@@ -319,7 +319,7 @@
        sudo gdebi electron-ssr_0.2.4_amd64.deb
        ```
 
-       安装后即可打开配置ssr账号。
+       安装后即可打开配置ssr账号。配置ssr账号后尝试翻墙，如果可以则跳过步骤`3.配置PAC模式`。
 
     3. 配置PAC模式
 
