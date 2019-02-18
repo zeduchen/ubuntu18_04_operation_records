@@ -544,7 +544,11 @@
     sudo apt install curl
     ```
 
-32. 系统备份
+32. VirtualBox虚拟机安装Windows 10
+
+    参考[ubuntu虚拟机安装win10图文详解](https://jingyan.baidu.com/article/5552ef47e59e8d518ffbc9a8.html)。
+
+33. 系统备份
 
     参照[链接](https://blog.csdn.net/qq_35523593/article/details/78545530)，用root用户和切换到根目录。
 
