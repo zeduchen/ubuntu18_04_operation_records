@@ -419,7 +419,7 @@
 
     [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
 
-    [Drop Down Terminal](https://extensions.gnome.org/extension/442/drop-down-terminal/)
+    [Drop Down Terminal X](https://extensions.gnome.org/extension/1509/drop-down-terminal-x/)
 
     [Dynamic Top Bar](https://extensions.gnome.org/extension/885/dynamic-top-bar/)
 
