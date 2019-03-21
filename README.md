@@ -268,7 +268,7 @@
 
 10. 安装MatConvNet
 
-   从[链接](http://www.vlfeat.org/matconvnet/)下载`matconvnet-1.0-beta25.tar`并解压，按照[链接](https://blog.csdn.net/breeze5428/article/details/42242761)安装。
+    从[链接](http://www.vlfeat.org/matconvnet/)下载`matconvnet-1.0-beta25.tar`并解压，按照[链接](https://blog.csdn.net/breeze5428/article/details/42242761)安装。
 
 11. 安装工具gdebi
 
@@ -518,7 +518,29 @@
 
 27. 安装Teamviewer
 
-    [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。
+    [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。如果被误诊断为商业用途，可以通过卸载，修改Mac地址后重新安装解决。
+
+    修改Mac地址方法：
+
+    先查看网卡名称（一般为`eno1`）：
+
+    ```
+    ifconfig
+    ```
+
+    编辑`/etc/network/interfaces`：
+
+    ```
+    sudo vim /etc/network/interfaces
+    ```
+
+    `iface lo inet loopback`下面添加一行：
+
+    ```
+    pre-up ifconfig eno1 hw ether d4:55:4f:5d:74:d0
+    ```
+
+    注：`eno1`为网卡名称，`d4:55:4f:5d:74:d1`为要修改的Mac地址。重启后可用`ifconfig`命令查看是否更改成功。
 
 28. 安装QQ、WeChat、Tim
 
