@@ -63,7 +63,103 @@
 
    `<family>Noto Sans CJK JP</family>`优先于`<family>Noto Sans CJK SC</family>`，将它们的位置互换即可。
 
-3. 修改镜像源
+3. 安装electron-ssr
+
+   1. 安装Python2
+
+      需要系统可正常执行`shadowsocksr`的Python版，因此需要安装Python2：
+
+      ```
+      sudo apt install python-minimal
+      ```
+
+   2. 安装electron-ssr
+
+      从[链接](https://github.com/erguotou520/electron-ssr)下载electron-ssr，安装electron-ssr:
+
+      ```
+      sudo gdebi electron-ssr_0.2.4_amd64.deb
+      ```
+
+      安装后即可打开配置ssr账号。配置ssr账号后尝试翻墙，如果可以则跳过步骤`3.配置PAC模式`。
+
+   3. 配置PAC模式
+
+      安装后在系统`设置`-->`网络`-->`网络代理` ，设置为`手动`：
+
+      | HTTP代理**    |                               | **0**    |
+      | ------------- | ----------------------------- | -------- |
+      | **HTTPS代理** |                               | **0**    |
+      | **FTP代理**   |                               | **0**    |
+      | **Socks主机** | **127.0.0.1**                 | **1080** |
+      | **忽略主机**  | **localhost,127.0.0.0/8,::1** |          |
+
+      还是全局翻墙。下载[SwitchOmega](https://github.com/FelisCatus/SwitchyOmega/releases)。Chrome扩展程序页面打开开发者模式，重启Chrome，把`SwitchyOmega_Chromium.crx`文件拖到浏览器扩展程序页面安装，安装后关闭开发者模式。之后安装[链接](https://www.switchyomega.com/settings/)配置SwitchyOmega。
+
+   4. Terminal和Git翻墙
+
+      在Terminal查看IP地址和位置信息：
+
+      ```
+      curl ip.gs
+      ```
+
+      Terminal设置代理：
+
+      安装`polipo`：
+
+      ```
+      sudo apt install polipo
+      ```
+
+      修改`polipo`配置文件：
+
+      ```
+      sudo vim /etc/polipo/config
+      ```
+
+      末尾添加：
+
+      ```
+      socksParentProxy = "localhost:1080"
+      socksProxyType = socks5
+      logLevel=4
+      ```
+
+      关闭和启动polipo：
+
+      ```
+      sudo service polipo stop
+      sudo service polipo start
+      ```
+
+      添加到配置文件：
+
+      ```
+      vim ~/.bashrc
+      ```
+
+      末尾添加：
+
+      ```
+      export http_proxy=http://localhost:8123
+      export https_proxy=https://localhost:8123
+      ```
+
+      使配置生效：
+
+      ```
+      source ~/.bashrc
+      ```
+
+      Git设置代理：
+
+      ```
+      git config --global http.proxy "socks5://127.0.0.1:1080"
+      git config --global https.proxy "socks5://127.0.0.1:1080"
+      ```
+
+4. 修改镜像源(如果系统有翻墙且Terminal也配置翻墙,则可以不用修改镜像源)
 
    备份:
 
@@ -89,13 +185,13 @@
    # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
    ```
 
-4. 安装Vim
+5. 安装Vim
 
    ```
    sudo apt install vim
    ```
 
-5. 安装Typora，Markdown编辑器
+6. 安装Typora，Markdown编辑器
 
    ```
    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
@@ -104,7 +200,7 @@
    sudo apt install typora
    ```
 
-6. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
+7. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
 
    1. 先用系统的gcc-7安装驱动，驱动安装步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
 
@@ -238,7 +334,7 @@
       sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
       ```
 
-7. 安装Anaconda3
+8. 安装Anaconda3
 
    从[官网](https://docs.anaconda.com/anaconda/install/linux)下载，安装：
 
@@ -246,7 +342,7 @@
    bash Anaconda3-5.2.0-Linux-x86_64.sh
    ```
 
-   换成清华大学的镜像源：
+   换成清华大学的镜像源(如果系统有翻墙且Terminal也配置翻墙,则可以不用修改镜像源)：
 
    ```
    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
@@ -254,7 +350,7 @@
    conda config --set show_channel_urls yes
    ```
 
-8. 安装Pytorch
+9. 安装Pytorch
 
    在官网选对应版本Pytorch后会有安装命令，Linux+conda+3.6+9.1的命令是：
 
@@ -262,21 +358,21 @@
    conda install pytorch torchvision cuda91 -c pytorch
    ```
 
-9. 安装MATLAB R2016b
+10. 安装MATLAB R2016b
 
    按照[链接](https://blog.csdn.net/zyqblog/article/details/78938760)安装。
 
-10. 安装MatConvNet
+11. 安装MatConvNet
 
     从[链接](http://www.vlfeat.org/matconvnet/)下载`matconvnet-1.0-beta25.tar`并解压，按照[链接](https://blog.csdn.net/breeze5428/article/details/42242761)安装。
 
-11. 安装工具gdebi
+12. 安装工具gdebi
 
     ```
     sudo apt install gdebi
     ```
 
-12. 安装搜狗输入法
+13. 安装搜狗输入法
 
     1. 安装fcitx
 
@@ -292,7 +388,7 @@
        sudo gdebi sogoupinyin_2.2.0.0108_amd64.deb
        ```
 
-13. 安装Chrome
+14. 安装Chrome
 
     ```
     sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
@@ -300,102 +396,6 @@
     sudo apt update
     sudo apt install google-chrome-stable
     ```
-
-14. 安装electron-ssr
-
-    1. 安装Python2
-
-       需要系统可正常执行`shadowsocksr`的Python版，因此需要安装Python2：
-
-       ```
-       sudo apt install python-minimal
-       ```
-
-    2. 安装electron-ssr
-
-       从[链接](https://github.com/erguotou520/electron-ssr)下载electron-ssr，安装electron-ssr:
-
-       ```
-       sudo gdebi electron-ssr_0.2.4_amd64.deb
-       ```
-
-       安装后即可打开配置ssr账号。配置ssr账号后尝试翻墙，如果可以则跳过步骤`3.配置PAC模式`。
-
-    3. 配置PAC模式
-
-       安装后在系统`设置`-->`网络`-->`网络代理` ，设置为`手动`：
-
-       | HTTP代理**    |                               | **0**    |
-       | ------------- | ----------------------------- | -------- |
-       | **HTTPS代理** |                               | **0**    |
-       | **FTP代理**   |                               | **0**    |
-       | **Socks主机** | **127.0.0.1**                 | **1080** |
-       | **忽略主机**  | **localhost,127.0.0.0/8,::1** |          |
-
-       还是全局翻墙。下载[SwitchOmega](https://github.com/FelisCatus/SwitchyOmega/releases)。Chrome扩展程序页面打开开发者模式，重启Chrome，把`SwitchyOmega_Chromium.crx`文件拖到浏览器扩展程序页面安装，安装后关闭开发者模式。之后安装[链接](https://www.switchyomega.com/settings/)配置SwitchyOmega。
-
-    4. 终端和Git翻墙
-
-       在终端查看IP地址和位置信息：
-
-       ```
-       curl ip.gs
-       ```
-
-       终端设置代理：
-
-       安装`polipo`：
-
-       ```
-       sudo apt install polipo
-       ```
-
-       修改`polipo`配置文件：
-
-       ```
-       sudo vim /etc/polipo/config
-       ```
-
-       末尾添加：
-
-       ```
-       socksParentProxy = "localhost:1080"
-       socksProxyType = socks5
-       logLevel=4
-       ```
-
-       关闭和启动polipo：
-
-       ```
-       sudo service polipo stop
-       sudo service polipo start
-       ```
-
-       添加到配置文件：
-
-       ```
-       vim ~/.bashrc
-       ```
-
-       末尾添加：
-
-       ```
-       export http_proxy=http://localhost:8123
-       export https_proxy=https://localhost:8123
-       ```
-
-       使配置生效：
-
-       ```
-       source ~/.bashrc
-       ```
-
-       Git设置代理：
-
-       ```
-       git config --global http.proxy "socks5://127.0.0.1:1080"
-       git config --global https.proxy "socks5://127.0.0.1:1080"
-       ```
 
 15. 安装gnome-tweak，优化
 
