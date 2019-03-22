@@ -61,7 +61,41 @@
    </fontconfig>
    ```
 
-   `<family>Noto Sans CJK JP</family>`优先于`<family>Noto Sans CJK SC</family>`，将它们的位置互换即可。
+   `<family>Noto Sans CJK JP</family>`优先于`<family>Noto Sans CJK SC</family>`，将它们的位置互换即可:
+
+   ```
+   <?xml version="2.0"?>
+   <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+   <fontconfig>
+           <alias>
+                   <family>sans-serif</family>
+                   <prefer>
+                           <family>Noto Sans CJK SC</family>
+                           <family>Noto Sans CJK KR</family>
+                           <family>Noto Sans CJK JP</family>
+                           <family>Noto Sans CJK TC</family>
+                   </prefer>
+           </alias>
+           <alias>
+                   <family>serif</family>
+                   <prefer>
+                           <family>Noto Serif CJK SC</family>
+                           <family>Noto Serif CJK KR</family>
+                           <family>Noto Serif CJK JP</family>
+                           <family>Noto Serif CJK TC</family>
+                   </prefer>
+           </alias>
+           <alias>
+                   <family>monospace</family>
+                   <prefer>
+                           <family>Noto Sans Mono CJK SC</family>
+                           <family>Noto Sans Mono CJK KR</family>
+                           <family>Noto Sans Mono CJK JP</family>
+                           <family>Noto Sans Mono CJK TC</family>
+                   </prefer>
+           </alias>
+   </fontconfig>
+   ```
 
 3. 安装electron-ssr
 
