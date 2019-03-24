@@ -550,9 +550,9 @@
     Exec=env LD_LIBRARY_PATH=/opt/Qt5.8.0/5.8/gcc_64/lib netease-cloud-music %U --no-sandbox
     ```
 
-27. 安装Teamviewer
+27. 安装TeamViewer
 
-    [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。如果被误诊断为商业用途，可以通过卸载，修改Mac地址后重新安装解决。
+    [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。如果被误诊断为商业用途，可以通过卸载，修改Mac地址，重启后重新安装解决。
 
     修改Mac地址方法：
 
