@@ -571,10 +571,10 @@
     `iface lo inet loopback`下面添加一行：
 
     ```
-    pre-up ifconfig eno1 hw ether d4:55:4f:5d:74:d0
+    pre-up ifconfig eno1 hw ether d2:55:4f:5d:74:d1
     ```
 
-    注：`eno1`为网卡名称，`d4:55:4f:5d:74:d1`为要修改的Mac地址。重启后可用`ifconfig`命令查看是否更改成功。
+    注：`eno1`为网卡名称，`d2:55:4f:5d:74:d1`为要修改的Mac地址。重启后可用`ifconfig`命令查看是否更改成功。
 
 28. 安装QQ、WeChat、Tim
 
