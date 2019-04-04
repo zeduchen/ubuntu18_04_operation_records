@@ -556,25 +556,45 @@
 
     修改Mac地址方法：
 
-    先查看网卡名称（一般为`eno1`）：
+    1. 先查看网卡名（一般为`eno1`）和Mac地址（类似`d2:55:4f:5d:74:d1`）：
 
-    ```
-    ifconfig
-    ```
+       ```
+       ifconfig
+       ```
 
-    编辑`/etc/network/interfaces`：
+    2. 检验要换修改的Mac地址是否可用（临时修改Mac地址）：
 
-    ```
-    sudo vim /etc/network/interfaces
-    ```
+       关闭网卡：
 
-    `iface lo inet loopback`下面添加一行：
+       ```
+       sudo ifconfig eno1 down
+       ```
 
-    ```
-    pre-up ifconfig eno1 hw ether d2:55:4f:5d:74:d1
-    ```
+       测试要修改的Mac地址，例如测试能否更改为`d2:55:4f:5d:74:d1`：
 
-    注：`eno1`为网卡名称，`d2:55:4f:5d:74:d1`为要修改的Mac地址。重启后可用`ifconfig`命令查看是否更改成功。
+       ```
+       sudo ifconfig eno1 hw ether d2:55:4f:5d:74:d1
+       ```
+
+       如果可用则没有任何返回，如果不可用则会返回`d2:55:4f:5d:74:d1: invalid ether address.`。测试到可用的Mac地址后，重新开启网卡：
+
+       ```
+       sudo ifconfig eno1 up
+       ```
+
+    3. 永久修改Mac地址（上面修改的Mac地址为临时修改的，系统重启后会恢复为原来的Mac地址）
+
+       编辑`/etc/network/interfaces`：
+
+       ```
+       sudo vim /etc/network/interfaces
+       ```
+
+       `iface lo inet loopback`下面添加一行：
+
+       ```
+       pre-up ifconfig eno1 hw ether d2:55:4f:5d:74:d1
+       ```
 
 28. 安装QQ、WeChat、Tim
 
