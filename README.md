@@ -394,7 +394,7 @@
 
 10. 安装MATLAB R2016b
 
-   按照[链接](https://blog.csdn.net/zyqblog/article/details/78938760)安装。
+    按照[链接](https://blog.csdn.net/zyqblog/article/details/78938760)安装。
 
 11. 安装MatConvNet
 
