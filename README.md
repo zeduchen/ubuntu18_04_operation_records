@@ -622,7 +622,7 @@
 
 32. VirtualBox虚拟机安装Windows 10
 
-    参考[ubuntu虚拟机安装win10图文详解](https://jingyan.baidu.com/article/5552ef47e59e8d518ffbc9a8.html)。
+    参考[ubuntu虚拟机安装win10图文详解](https://jingyan.baidu.com/article/5552ef47e59e8d518ffbc9a8.html)，两个系统共享文件夹的设置参考[oracle vm virtualBox共享文件夹功能怎么用](https://jingyan.baidu.com/article/925f8cb8178c49c0dde056a4.html)。
 
 33. 系统备份
 
