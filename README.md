@@ -552,7 +552,7 @@
 
 27. 安装TeamViewer
 
-    [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。如果被误诊断为商业用途，可以通过卸载，修改Mac地址，重启后重新安装解决。
+    [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。如果被误诊断为商业用途，可以通过卸载，修改Mac地址，重新安装解决。
 
     修改Mac地址方法：
 
