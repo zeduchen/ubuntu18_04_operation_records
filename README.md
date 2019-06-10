@@ -115,84 +115,75 @@
       sudo gdebi electron-ssr_0.2.4_amd64.deb
       ```
 
-      安装后即可打开配置ssr账号。配置ssr账号后尝试翻墙，如果可以则跳过步骤`3.配置PAC模式`。
+      安装后即可打开配置ssr账号。
 
    3. 配置PAC模式
 
-      安装后在系统`设置`-->`网络`-->`网络代理` ，设置为`手动`：
-
-      | **HTTP代理**  |                               | **0**    |
-      | ------------- | ----------------------------- | -------- |
-      | **HTTPS代理** |                               | **0**    |
-      | **FTP代理**   |                               | **0**    |
-      | **Socks主机** | **127.0.0.1**                 | **1080** |
-      | **忽略主机**  | **localhost,127.0.0.0/8,::1** |          |
-
-      还是全局翻墙。下载[SwitchOmega](https://github.com/FelisCatus/SwitchyOmega/releases)。Chrome扩展程序页面打开开发者模式，重启Chrome，把`SwitchyOmega_Chromium.crx`文件拖到浏览器扩展程序页面安装，安装后关闭开发者模式。之后安装[链接](https://www.switchyomega.com/settings/)配置SwitchyOmega。
+      下载[SwitchOmega](https://github.com/FelisCatus/SwitchyOmega/releases)。Chrome扩展程序页面打开开发者模式，重启Chrome，把`SwitchyOmega_Chromium.crx`文件拖到浏览器扩展程序页面安装，安装后关闭开发者模式。之后安装[链接](https://www.switchyomega.com/settings/)配置SwitchyOmega。
 
    4. Terminal和Git翻墙
-
+   
       在Terminal查看IP地址和位置信息：
-
+   
       ```
       curl ip.gs
-      ```
-
-      Terminal设置代理：
-
-      安装`polipo`：
-
-      ```
+   ```
+   
+   Terminal设置代理：
+   
+   安装`polipo`：
+   
+   ```
       sudo apt install polipo
       ```
-
-      修改`polipo`配置文件：
-
-      ```
+   
+   修改`polipo`配置文件：
+   
+   ```
       sudo vim /etc/polipo/config
-      ```
-
+   ```
+   
       末尾添加：
-
-      ```
+   
+   ```
       socksParentProxy = "localhost:1080"
-      socksProxyType = socks5
+   socksProxyType = socks5
       logLevel=4
       ```
-
-      关闭和启动polipo：
-
-      ```
+   
+   关闭和启动polipo：
+   
+   ```
       sudo service polipo stop
       sudo service polipo start
       ```
-
+   
       添加到配置文件：
 
       ```
-      vim ~/.bashrc
+   vim ~/.bashrc
       ```
-
+   
       末尾添加：
-
-      ```
+   
+   ```
       export http_proxy=http://localhost:8123
-      export https_proxy=https://localhost:8123
+   export https_proxy=https://localhost:8123
       ```
-
+   
       使配置生效：
 
       ```
-      source ~/.bashrc
+   source ~/.bashrc
       ```
-
+   
       Git设置代理：
-
-      ```
+   
+   ```
       git config --global http.proxy "socks5://127.0.0.1:1080"
-      git config --global https.proxy "socks5://127.0.0.1:1080"
+   git config --global https.proxy "socks5://127.0.0.1:1080"
       ```
-
+   
 4. 修改镜像源(如果系统有翻墙且Terminal也配置翻墙,则可以不用修改镜像源)
 
    备份:
