@@ -109,7 +109,7 @@
 
    2. 安装electron-ssr
 
-      从[链接](https://github.com/erguotou520/electron-ssr)下载electron-ssr，安装electron-ssr:
+      从[链接](https://github.com/erguotou520/electron-ssr)下载electron-ssr(electron-ssr作者删除了这个伟大的项目，不管因为什么原因，非常感谢作者的付出，希望有缘再见！现在可以从项目的Fork里下载，或者在github搜索其他人的备份），安装electron-ssr:
 
       ```
       sudo gdebi electron-ssr_0.2.4_amd64.deb
@@ -127,61 +127,61 @@
    
       ```
       curl ip.gs
-   ```
-   
-   Terminal设置代理：
-   
-   安装`polipo`：
-   
-   ```
+      ```
+      
+      Terminal设置代理：
+      
+      安装`polipo`：
+      
+      ```
       sudo apt install polipo
       ```
-   
-   修改`polipo`配置文件：
-   
-   ```
+      
+      修改`polipo`配置文件：
+      
+      ```
       sudo vim /etc/polipo/config
-   ```
-   
+      ```
+      
       末尾添加：
-   
-   ```
+      
+      ```
       socksParentProxy = "localhost:1080"
-   socksProxyType = socks5
+      socksProxyType = socks5
       logLevel=4
       ```
-   
-   关闭和启动polipo：
-   
-   ```
+      
+      关闭和启动polipo：
+      
+      ```
       sudo service polipo stop
       sudo service polipo start
       ```
-   
+      
       添加到配置文件：
-
-      ```
-   vim ~/.bashrc
-      ```
    
+      ```
+      vim ~/.bashrc
+      ```
+      
       末尾添加：
-   
-   ```
+      
+      ```
       export http_proxy=http://localhost:8123
-   export https_proxy=https://localhost:8123
+      export https_proxy=https://localhost:8123
       ```
-   
+      
       使配置生效：
-
-      ```
-   source ~/.bashrc
-      ```
    
+      ```
+      source ~/.bashrc
+      ```
+      
       Git设置代理：
-   
-   ```
+      
+      ```
       git config --global http.proxy "socks5://127.0.0.1:1080"
-   git config --global https.proxy "socks5://127.0.0.1:1080"
+      git config --global https.proxy "socks5://127.0.0.1:1080"
       ```
    
 4. 修改镜像源(如果系统有翻墙且Terminal也配置翻墙,则可以不用修改镜像源)
