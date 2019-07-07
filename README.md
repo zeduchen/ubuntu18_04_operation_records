@@ -148,19 +148,18 @@
       ```
       socksParentProxy = "localhost:1080"
       socksProxyType = socks5
-      logLevel=4
+      logLevel = 4
       ```
       
       关闭和启动polipo：
       
       ```
-      sudo service polipo stop
-      sudo service polipo start
+      sudo service polipo stop && sudo service polipo start
       ```
       
       添加到配置文件：
-   
-      ```
+      
+   ```
       vim ~/.bashrc
       ```
       
@@ -172,16 +171,15 @@
       ```
       
       使配置生效：
-   
-      ```
+      
+   ```
       source ~/.bashrc
       ```
       
       Git设置代理：
       
       ```
-      git config --global http.proxy "socks5://127.0.0.1:1080"
-      git config --global https.proxy "socks5://127.0.0.1:1080"
+      git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"
       ```
    
 4. 修改镜像源(如果系统有翻墙且Terminal也配置翻墙,则可以不用修改镜像源)
@@ -219,12 +217,9 @@
 6. 安装Typora，Markdown编辑器
 
    ```
-   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
-   sudo add-apt-repository 'deb https://typora.io/linux ./'
-   sudo apt update
-   sudo apt install typora
+   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE && sudo add-apt-repository 'deb https://typora.io/linux ./' && sudo apt update && sudo apt install typora
    ```
-
+   
 7. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
 
    1. 先用系统的gcc-7安装驱动，驱动安装步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
@@ -232,133 +227,113 @@
    2. 给GCC、G++降级，安装`GCC-4.8`和`G++-4.8`：
 
       ```
-      sudo apt install gcc-4.8
-      sudo apt install g++-4.8
+      sudo apt install gcc-4.8 && sudo apt install g++-4.8
       ```
-
-      装完后进入到`/usr/bin`目录下，命令可查看GCC和G++优先级：
-
-      ```
+      
+装完后进入到`/usr/bin`目录下，命令可查看GCC和G++优先级：
+      
+```
       ls -l gcc*
       ls -l g++* 
       ```
-
-      备份并且重新链接：
-
+      
+备份并且重新链接：
+      
+```
+      sudo mv gcc gcc.backup && sudo ln -s gcc-4.8 gcc && sudo mv g++ g++.backup && sudo ln -s g++-4.8 g++
       ```
-      sudo mv gcc gcc.backup
-      sudo ln -s gcc-4.8 gcc
-      sudo mv g++ g++.backup 
-      sudo ln -s g++-4.8 g++
-      ```
-
+      
    3. 安装Cuda9.0和对应版本cuDNN
-
-      逛完下载Cuda9.0，下载Cuda9.0的时候下载`runfile (local)`（.run文件）。安装Cuda9.0的时候，有个是问是否安装NVIDIA驱动的，前面已经安装过了，所以选择`no`，如果要将当前安装的cuda9.0设置为当前环境的版本，则创建软链接（symbolic link）选项可选`yes`，否则选`no`。
+   
+      官网下载Cuda9.0，下载Cuda9.0的时候下载`runfile (local)`（.run文件）。安装Cuda9.0的时候，有个是问是否安装NVIDIA驱动的，前面已经安装过了，所以选择`no`，如果要将当前安装的cuda9.0设置为当前环境的版本，则创建软链接（symbolic link）选项可选`yes`，否则选`no`。
 
       赋予可执行权限：
 
       ```
-      chmod +x cuda_9.0.176_384.81_linux.run
-      chmod +x cuda_9.0.176.1_linux.run
-      chmod +x cuda_9.0.176.2_linux.run
-      chmod +x cuda_9.0.176.3_linux.run
-      chmod +x cuda_9.0.176.4_linux.run
+   chmod +x cuda_9.0.176_384.81_linux.run && chmod +x cuda_9.0.176.1_linux.run && chmod +x cuda_9.0.176.2_linux.run && chmod +x cuda_9.0.176.3_linux.run && chmod +x cuda_9.0.176.4_linux.run
       ```
-
+   
       安装Cuda9.0：
-
+      
       ```
-      sudo ./cuda_9.0.176_384.81_linux.run
-      sudo ./cuda_9.0.176.1_linux.run
-      sudo ./cuda_9.0.176.2_linux.run
-      sudo ./cuda_9.0.176.3_linux.run
-      sudo ./cuda_9.0.176.4_linux.run
+   sudo ./cuda_9.0.176_384.81_linux.run && sudo ./cuda_9.0.176.1_linux.run && sudo ./cuda_9.0.176.2_linux.run && sudo ./cuda_9.0.176.3_linux.run && sudo ./cuda_9.0.176.4_linux.run
       ```
-
+   
       Cuda9.0对应的cuDNN有多个版本，根据需要选择版本，下载cuDNN的时候选择`Library for Linux`文件，下载后解压：
-
+   
       ```
-      tar -xzvf cudnn-9.0-linux-x64-v7.3.1.20.tgz
+   tar -xzvf cudnn-9.0-linux-x64-v7.3.1.20.tgz
       ```
-
+      
       复制到`cuda-9.0`文件夹(`cuda`是安装的cuda的软链接，避免以后安装多个cuda时cudnn混乱，不要复制到`cuda`文件夹）：
-
+   
       ```
-      sudo cp cuda/include/cudnn.h /usr/local/cuda-9.0/include
-      sudo cp cuda/lib64/libcudnn* /usr/local/cuda-9.0/lib64
-      sudo chmod a+r /usr/local/cuda-9.0/include/cudnn.h /usr/local/cuda-9.0/lib64/libcudnn*
+   sudo cp cuda/include/cudnn.h /usr/local/cuda-9.0/include && sudo cp cuda/lib64/libcudnn* /usr/local/cuda-9.0/lib64 && sudo chmod a+r /usr/local/cuda-9.0/include/cudnn.h /usr/local/cuda-9.0/lib64/libcudnn*
       ```
-
+   
       设置环境变量：
 
       ```
-      sudo vim ~/.bashrc
+   sudo vim ~/.bashrc
       ```
-
+   
       末尾添加：
-
+   
       ```
-      export PATH=/usr/local/cuda/bin${PATH:+:$PATH}}
+   export PATH=/usr/local/cuda/bin${PATH:+:$PATH}}
       export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-      ```
-
-      使环境变量设置立即生效：
-
-      ```
+   ```
+      
+   使环境变量设置立即生效：
+      
+```
       source ~/.bashrc
+   ```
+      
+4. 安装Cuda8.0和对应版本cuDNN
+   
+   正常步骤安装Cuda8.0会失败，原因是缺乏安装工具。故安装前需把`cuda_8.0.61_375.26_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
+   
       ```
-
-   4. 安装Cuda8.0和对应版本cuDNN
-
-      正常步骤安装Cuda8.0会失败，原因是缺乏安装工具。故安装前需把`cuda_8.0.61_375.26_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
-
+      sh ./cuda_8.0.61_375.26_linux.run --tar mxvf && sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/ && export $PERL5LIB
       ```
-      sh ./cuda_8.0.61_375.26_linux.run --tar mxvf
-      sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/
-      export $PERL5LIB
-      ```
-
+   
       之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-8.0`里。
 
       查看当前系统Cuda环境：
-
+   
       ```
-      nvcc -V
+nvcc -V
       ```
-
+   
       切换系统Cuda环境到`cuda-8.0`：
 
       ```
-      sudo rm -rf /usr/local/cuda
-      sudo ln -s /usr/local/cuda-8.0 /usr/local/cuda
+   sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-8.0 /usr/local/cuda
       ```
-
+      
    5. 安装Cuda7.5和对应版本cuDNN
 
       正常步骤安装Cuda7.5会失败，原因是缺乏安装工具。故安装前需把`cuda_7.5.18_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
 
       ```
-      sh ./cuda_7.5.18_linux.run --tar mxvf
-      sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/
-      export $PERL5LIB
+   sh ./cuda_7.5.18_linux.run --tar mxvf && sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/ && export $PERL5LIB
       ```
-
+      
       之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-7.5`里。
 
       查看当前系统Cuda环境：
 
       ```
-      nvcc -V
+   nvcc -V
       ```
-
-      切换系统Cuda环境到`cuda-7.5`：
-
-      ```
-      sudo rm -rf /usr/local/cuda
-      sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
-      ```
-
+      
+   切换系统Cuda环境到`cuda-7.5`：
+   
+   ```
+   sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
+   ```
+   
 8. 安装Anaconda3
 
    从[官网](https://docs.anaconda.com/anaconda/install/linux)下载，安装：
@@ -370,11 +345,9 @@
    换成清华大学的镜像源(如果系统有翻墙且Terminal也配置翻墙,则可以不用修改镜像源)：
 
    ```
-   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-   conda config --set show_channel_urls yes
+   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && conda config --set show_channel_urls yes
    ```
-
+   
 9. 安装Pytorch
 
    在官网选对应版本Pytorch后会有安装命令，Linux+conda+3.6+9.1的命令是：
@@ -416,12 +389,9 @@
 14. 安装Chrome
 
     ```
-    sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
-    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
-    sudo apt update
-    sudo apt install google-chrome-stable
+    sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/ && wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add - && sudo apt update && sudo apt install google-chrome-stable
     ```
-
+    
 15. 安装gnome-tweak，优化
 
     ```
@@ -459,11 +429,9 @@
 17. 安装Gnome Pie，快捷启动器
 
     ```
-    sudo add-apt-repository ppa:simonschneegans/testing
-    sudo apt update
-    sudo apt install gnome-pie
+    sudo add-apt-repository ppa:simonschneegans/testing && sudo apt update && sudo apt install gnome-pie
     ```
-
+    
 18. 安装Okular，PDF阅读器
 
     ```
@@ -513,10 +481,9 @@
     按照[链接](https://www.sublimetext.com/docs/3/linux_repositories.html)安装，安装后不能输入中文解决办法：
 
     ```
-    git clone https://github.com/lyfeyaj/sublime-text-imfix.git
-    cd sublime-text-imfix && ./sublime-imfix
+    git clone https://github.com/lyfeyaj/sublime-text-imfix.git && cd sublime-text-imfix && ./sublime-imfix
     ```
-
+    
 26. 安装网易云音乐
 
     按照[链接](https://blog.csdn.net/weixin_40993826/article/details/80343032)的方法安装。
@@ -524,23 +491,21 @@
     安装后桌面歌词会乱码，按[链接](https://reuixiy.github.io/technology/computer/system-software/2017/09/23/lyrics-messy-code-after-dist-upgrade.html)安装Qt5.8和修改`netease-cloud-music.desktop.desktop`文件：
 
     ```
-    wget http://download.qt.io/archive/qt/5.8/5.8.0/qt-opensource-linux-x64-5.8.0.run
-    chmod +x qt-opensource-linux-x64-5.8.0.run
-    sudo ./qt-opensource-linux-x64-5.8.0.run
+    wget http://download.qt.io/archive/qt/5.8/5.8.0/qt-opensource-linux-x64-5.8.0.run && chmod +x qt-opensource-linux-x64-5.8.0.run && sudo ./qt-opensource-linux-x64-5.8.0.run
     ```
-
+    
     然后弹出安装界面，一直默认，最后：
 
     ```
-    sudo vim /usr/share/applications/netease-cloud-music.desktop
+sudo vim /usr/share/applications/netease-cloud-music.desktop
     ```
-
+    
     将`Exec`行改为：
 
     ```
-    Exec=env LD_LIBRARY_PATH=/opt/Qt5.8.0/5.8/gcc_64/lib netease-cloud-music %U --no-sandbox
+Exec=env LD_LIBRARY_PATH=/opt/Qt5.8.0/5.8/gcc_64/lib netease-cloud-music %U --no-sandbox
     ```
-
+    
 27. 安装TeamViewer
 
     [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。如果被误诊断为商业用途，可以通过卸载，修改Mac地址，重新安装解决。
@@ -598,11 +563,9 @@
 30. 安装Persepolis，下载工具
 
     ```
-    sudo add-apt-repository ppa:persepolis/ppa
-    sudo apt update
-    sudo apt install persepolis
+    sudo add-apt-repository ppa:persepolis/ppa && sudo apt update && sudo apt install persepolis
     ```
-
+    
     Chrome安装扩展程序：`Persepolis Download Manager Integration`。
 
 31. 安装curl
