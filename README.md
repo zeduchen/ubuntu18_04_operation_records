@@ -161,23 +161,23 @@
       
    ```
       vim ~/.bashrc
-      ```
-      
+   ```
+   
       末尾添加：
-      
+   
       ```
       export http_proxy=http://localhost:8123
       export https_proxy=https://localhost:8123
       ```
-      
+   
       使配置生效：
-      
+   
    ```
       source ~/.bashrc
-      ```
-      
+   ```
+   
       Git设置代理：
-      
+   
       ```
       git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"
       ```
@@ -230,94 +230,89 @@
       sudo apt install gcc-4.8 && sudo apt install g++-4.8
       ```
       
-装完后进入到`/usr/bin`目录下，命令可查看GCC和G++优先级：
+      装完后进入到`/usr/bin`目录下，命令可查看GCC和G++优先级：
       
-```
+      ```
       ls -l gcc*
       ls -l g++* 
       ```
       
-备份并且重新链接：
+      删除旧软链接并且创建新的软链接：
       
-```
-      sudo mv gcc gcc.backup && sudo ln -s gcc-4.8 gcc && sudo mv g++ g++.backup && sudo ln -s g++-4.8 g++
       ```
-      
+      sudo rm gcc && sudo ln -s gcc-4.8 gcc && sudo rm g++ && sudo ln -s g++-4.8 g++
+      ```
+
    3. 安装Cuda9.0和对应版本cuDNN
-   
-      官网下载Cuda9.0，下载Cuda9.0的时候下载`runfile (local)`（.run文件）。安装Cuda9.0的时候，有个是问是否安装NVIDIA驱动的，前面已经安装过了，所以选择`no`，如果要将当前安装的cuda9.0设置为当前环境的版本，则创建软链接（symbolic link）选项可选`yes`，否则选`no`。
+
+      [官网](https://developer.nvidia.com/cuda-downloads)下载Cuda9.0，下载Cuda9.0的时候下载`runfile (local)`（.run文件）。安装Cuda9.0的时候，有个是问是否安装NVIDIA驱动的，前面已经安装过了，所以选择`no`，如果要将当前安装的cuda9.0设置为当前环境的版本，则创建软链接（symbolic link）选项可选`yes`，否则选`no`。
 
       赋予可执行权限：
 
       ```
-   chmod +x cuda_9.0.176_384.81_linux.run && chmod +x cuda_9.0.176.1_linux.run && chmod +x cuda_9.0.176.2_linux.run && chmod +x cuda_9.0.176.3_linux.run && chmod +x cuda_9.0.176.4_linux.run
+      chmod +x cuda_9.0.176_384.81_linux.run && chmod +x cuda_9.0.176.1_linux.run && chmod +x cuda_9.0.176.2_linux.run && chmod +x cuda_9.0.176.3_linux.run && chmod +x cuda_9.0.176.4_linux.run
       ```
-   
+
       安装Cuda9.0：
       
       ```
-   sudo ./cuda_9.0.176_384.81_linux.run && sudo ./cuda_9.0.176.1_linux.run && sudo ./cuda_9.0.176.2_linux.run && sudo ./cuda_9.0.176.3_linux.run && sudo ./cuda_9.0.176.4_linux.run
+      sudo ./cuda_9.0.176_384.81_linux.run && sudo ./cuda_9.0.176.1_linux.run && sudo ./cuda_9.0.176.2_linux.run && sudo ./cuda_9.0.176.3_linux.run && sudo ./cuda_9.0.176.4_linux.run
       ```
-   
+
       Cuda9.0对应的cuDNN有多个版本，根据需要选择版本，下载cuDNN的时候选择`Library for Linux`文件，下载后解压：
-   
+
       ```
-   tar -xzvf cudnn-9.0-linux-x64-v7.3.1.20.tgz
+      tar -xzvf cudnn-9.0-linux-x64-v7.3.1.20.tgz
       ```
       
       复制到`cuda-9.0`文件夹(`cuda`是安装的cuda的软链接，避免以后安装多个cuda时cudnn混乱，不要复制到`cuda`文件夹）：
-   
+
       ```
-   sudo cp cuda/include/cudnn.h /usr/local/cuda-9.0/include && sudo cp cuda/lib64/libcudnn* /usr/local/cuda-9.0/lib64 && sudo chmod a+r /usr/local/cuda-9.0/include/cudnn.h /usr/local/cuda-9.0/lib64/libcudnn*
+      sudo cp cuda/include/cudnn.h /usr/local/cuda-9.0/include && sudo cp cuda/lib64/libcudnn* /usr/local/cuda-9.0/lib64 && sudo chmod a+r /usr/local/cuda-9.0/include/cudnn.h /usr/local/cuda-9.0/lib64/libcudnn*
       ```
-   
+
       设置环境变量：
 
       ```
-   sudo vim ~/.bashrc
+      sudo vim ~/.bashrc
       ```
-   
+
       末尾添加：
-   
+
       ```
-   export PATH=/usr/local/cuda/bin${PATH:+:$PATH}}
+      export PATH=/usr/local/cuda/bin${PATH:+:$PATH}}
       export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-   ```
+      ```
       
-   使环境变量设置立即生效：
-      
-```
+      使环境变量设置立即生效:
+      ```
       source ~/.bashrc
-   ```
-      
-4. 安装Cuda8.0和对应版本cuDNN
-   
-   正常步骤安装Cuda8.0会失败，原因是缺乏安装工具。故安装前需把`cuda_8.0.61_375.26_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
-   
+      ```
+
+   4. 安装Cuda8.0和对应版本cuDNN
+
+      正常步骤安装Cuda8.0会失败，原因是缺乏安装工具。故安装前需把`cuda_8.0.61_375.26_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
+
       ```
       sh ./cuda_8.0.61_375.26_linux.run --tar mxvf && sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/ && export $PERL5LIB
       ```
-   
       之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-8.0`里。
-
       查看当前系统Cuda环境：
-   
-      ```
-nvcc -V
-      ```
-   
-      切换系统Cuda环境到`cuda-8.0`：
-
-      ```
-   sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-8.0 /usr/local/cuda
-      ```
       
+      ```
+      nvcc -V
+      ```
+      切换系统Cuda环境到`cuda-8.0`：
+      ```
+      sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-8.0 /usr/local/cuda
+      ```
+
    5. 安装Cuda7.5和对应版本cuDNN
 
       正常步骤安装Cuda7.5会失败，原因是缺乏安装工具。故安装前需把`cuda_7.5.18_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
 
       ```
-   sh ./cuda_7.5.18_linux.run --tar mxvf && sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/ && export $PERL5LIB
+      sh ./cuda_7.5.18_linux.run --tar mxvf && sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/ && export $PERL5LIB
       ```
       
       之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-7.5`里。
@@ -325,15 +320,16 @@ nvcc -V
       查看当前系统Cuda环境：
 
       ```
-   nvcc -V
+      nvcc -V
       ```
       
-   切换系统Cuda环境到`cuda-7.5`：
-   
-   ```
-   sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
-   ```
-   
+
+      切换系统Cuda环境到`cuda-7.5`：
+
+      ```
+      sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
+      ```
+
 8. 安装Anaconda3
 
    从[官网](https://docs.anaconda.com/anaconda/install/linux)下载，安装：
