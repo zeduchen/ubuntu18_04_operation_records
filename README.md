@@ -159,25 +159,25 @@
       
       添加到配置文件：
       
-   ```
+      ```
       vim ~/.bashrc
-   ```
-   
+      ```
+      
       末尾添加：
-   
+      
       ```
       export http_proxy=http://localhost:8123
       export https_proxy=https://localhost:8123
       ```
-   
+      
       使配置生效：
-   
-   ```
+      
+      ```
       source ~/.bashrc
-   ```
+      ```
    
       Git设置代理：
-   
+      
       ```
       git config --global http.proxy "socks5://127.0.0.1:1080" && git config --global https.proxy "socks5://127.0.0.1:1080"
       ```
