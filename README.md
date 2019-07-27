@@ -497,7 +497,7 @@ sudo vim /usr/share/applications/netease-cloud-music.desktop
     ```
     
     将`Exec`行改为：
-
+    
     ```
 Exec=env LD_LIBRARY_PATH=/opt/Qt5.8.0/5.8/gcc_64/lib netease-cloud-music %U --no-sandbox
     ```
