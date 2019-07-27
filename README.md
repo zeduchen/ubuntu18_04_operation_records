@@ -99,7 +99,7 @@
 
 3. 安装electron-ssr
 
-   1. 安装Python2
+   1. 安装Python 2
 
       需要系统可正常执行`shadowsocksr`的Python版，因此需要安装Python2：
 
@@ -123,8 +123,14 @@
 
    4. Terminal和Git翻墙
    
-      在Terminal查看IP地址和位置信息：
+      安装curl：
    
+      ```
+      sudo apt install curl
+      ```
+      
+      在Terminal查看IP地址和位置信息：
+      
       ```
       curl ip.gs
       ```
@@ -169,13 +175,13 @@
       export http_proxy=http://localhost:8123
       export https_proxy=https://localhost:8123
       ```
-      
+   
       使配置生效：
       
       ```
       source ~/.bashrc
       ```
-   
+      
       Git设置代理：
       
       ```
@@ -220,7 +226,7 @@
    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE && sudo add-apt-repository 'deb https://typora.io/linux ./' && sudo apt update && sudo apt install typora
    ```
    
-7. 安装NVIDIA（GTX 1060）驱动以及Cuda9.0、Cuda7.5
+7. 安装显卡驱动和Cuda，例如NVIDIA（GTX 1060）驱动以及Cuda 9.0、Cuda 8.0、Cuda 7.5
 
    1. 先用系统的gcc-7安装驱动，驱动安装步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
 
@@ -243,9 +249,9 @@
       sudo rm gcc && sudo ln -s gcc-4.8 gcc && sudo rm g++ && sudo ln -s g++-4.8 g++
       ```
 
-   3. 安装Cuda9.0和对应版本cuDNN
+   3. 安装Cuda 9.0和对应版本cuDNN
 
-      [官网](https://developer.nvidia.com/cuda-downloads)下载Cuda9.0，下载Cuda9.0的时候下载`runfile (local)`（.run文件）。安装Cuda9.0的时候，有个是问是否安装NVIDIA驱动的，前面已经安装过了，所以选择`no`，如果要将当前安装的cuda9.0设置为当前环境的版本，则创建软链接（symbolic link）选项可选`yes`，否则选`no`。
+      [官网](https://developer.nvidia.com/cuda-downloads)下载Cuda 9.0，下载Cuda 9.0的时候下载`runfile (local)`（.run文件）。安装Cuda 9.0的时候，有个是问是否安装NVIDIA驱动的，前面已经安装过了，所以选择`no`，如果要将当前安装的cuda 9.0设置为当前环境的版本，则创建软链接（symbolic link）选项可选`yes`，否则选`no`。
 
       赋予可执行权限：
 
@@ -253,13 +259,13 @@
       chmod +x cuda_9.0.176_384.81_linux.run && chmod +x cuda_9.0.176.1_linux.run && chmod +x cuda_9.0.176.2_linux.run && chmod +x cuda_9.0.176.3_linux.run && chmod +x cuda_9.0.176.4_linux.run
       ```
 
-      安装Cuda9.0：
+      安装Cuda 9.0：
       
       ```
       sudo ./cuda_9.0.176_384.81_linux.run && sudo ./cuda_9.0.176.1_linux.run && sudo ./cuda_9.0.176.2_linux.run && sudo ./cuda_9.0.176.3_linux.run && sudo ./cuda_9.0.176.4_linux.run
       ```
 
-      Cuda9.0对应的cuDNN有多个版本，根据需要选择版本，下载cuDNN的时候选择`Library for Linux`文件，下载后解压：
+      Cuda 9.0对应的cuDNN有多个版本，根据需要选择版本，下载cuDNN的时候选择`Library for Linux`文件，下载后解压：
 
       ```
       tar -xzvf cudnn-9.0-linux-x64-v7.3.1.20.tgz
@@ -289,7 +295,7 @@
       source ~/.bashrc
       ```
 
-   4. 安装Cuda8.0和对应版本cuDNN
+   4. 安装Cuda 8.0和对应版本cuDNN
 
       正常步骤安装Cuda8.0会失败，原因是缺乏安装工具。故安装前需把`cuda_8.0.61_375.26_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
 
@@ -307,9 +313,9 @@
       sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-8.0 /usr/local/cuda
       ```
 
-   5. 安装Cuda7.5和对应版本cuDNN
+   5. 安装Cuda 7.5和对应版本cuDNN
 
-      正常步骤安装Cuda7.5会失败，原因是缺乏安装工具。故安装前需把`cuda_7.5.18_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
+      正常步骤安装Cuda 7.5会失败，原因是缺乏安装工具。故安装前需把`cuda_7.5.18_linux.run`解压，然后复制`InstallUtils.pm`到`/usr/lib/x86_64-linux-gnu/perl-base/`并且设置环境：
 
       ```
       sh ./cuda_7.5.18_linux.run --tar mxvf && sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/ && export $PERL5LIB
@@ -330,7 +336,7 @@
       sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
       ```
 
-8. 安装Anaconda3
+8. 安装Anaconda 3
 
    从[官网](https://docs.anaconda.com/anaconda/install/linux)下载，安装：
 
@@ -484,7 +490,7 @@
 
     按照[链接](https://blog.csdn.net/weixin_40993826/article/details/80343032)的方法安装。
 
-    安装后桌面歌词会乱码，按[链接](https://reuixiy.github.io/technology/computer/system-software/2017/09/23/lyrics-messy-code-after-dist-upgrade.html)安装Qt5.8和修改`netease-cloud-music.desktop.desktop`文件：
+    安装后桌面歌词会乱码，按[链接](https://reuixiy.github.io/technology/computer/system-software/2017/09/23/lyrics-messy-code-after-dist-upgrade.html)安装Qt 5.8和修改`netease-cloud-music.desktop.desktop`文件：
 
     ```
     wget http://download.qt.io/archive/qt/5.8/5.8.0/qt-opensource-linux-x64-5.8.0.run && chmod +x qt-opensource-linux-x64-5.8.0.run && sudo ./qt-opensource-linux-x64-5.8.0.run
@@ -564,12 +570,6 @@
     
     Chrome安装扩展程序：`Persepolis Download Manager Integration`。
 
-31. 安装curl
-
-    ```
-    sudo apt install curl
-    ```
-
 32. VirtualBox虚拟机安装Windows 10
 
     参考[ubuntu虚拟机安装win10图文详解](https://jingyan.baidu.com/article/5552ef47e59e8d518ffbc9a8.html)，两个系统共享文件夹的设置参考[oracle vm virtualBox共享文件夹功能怎么用](https://jingyan.baidu.com/article/925f8cb8178c49c0dde056a4.html)。
@@ -581,19 +581,19 @@
     不包括`/home`和`/boot`的备份：
 
     ```
-    tar -cvpzf /media/ubuntu_backup_`date +%Y%m%d`.tar.gz --exclude=/proc --exclude=/tmp --exclude=/boot --exclude=/home --exclude=/lost+found --exclude=/media --exclude=/mnt --exclude=/run /
+    tar -cvpzf /to/your/backup/path/ubuntu_backup_`date +%Y%m%d`.tar.gz --exclude=/proc --exclude=/tmp --exclude=/boot --exclude=/home --exclude=/lost+found --exclude=/media --exclude=/mnt --exclude=/run /
     ```
 
     `/boot`备份：
 
     ```
-    tar -cvpzf /media/ubuntu_boot_backup_`date +%Y%m%d`.tar.gz /boot
+    tar -cvpzf /to/your/backup/path/ubuntu_boot_backup_`date +%Y%m%d`.tar.gz /boot
     ```
 
     `/home`备份：
 
     ```
-    tar -cvpzf /media/ubuntu_home_backup_`date +%Y%m%d`.tar.gz /home
+    tar -cvpzf /to/your/backup/path/ubuntu_home_backup_`date +%Y%m%d`.tar.gz /home
     ```
 
     有可能备份到最后系统会提示”tar: 由于前次错误,将以上次的错误状态退出”，这个警告可以忽略，没什么影响的。
