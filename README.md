@@ -226,7 +226,7 @@
    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE && sudo add-apt-repository 'deb https://typora.io/linux ./' && sudo apt update && sudo apt install typora
    ```
    
-7. 安装显卡驱动和Cuda，例如NVIDIA（GTX 1060）驱动以及Cuda 9.0、Cuda 8.0、Cuda 7.5
+7. 安装显卡驱动和Cuda，例如NVIDIA（GTX 1060）驱动以及Cuda 9.0、Cuda 8.0或Cuda 7.5
 
    1. 先用系统的gcc-7安装驱动，驱动安装步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
 
@@ -235,18 +235,24 @@
       ```
       sudo apt install gcc-4.8 && sudo apt install g++-4.8
       ```
-      
+
       装完后进入到`/usr/bin`目录下，命令可查看GCC和G++优先级：
-      
+
       ```
       ls -l gcc*
       ls -l g++* 
       ```
-      
+
       删除旧软链接并且创建新的软链接：
-      
+
       ```
       sudo rm gcc && sudo ln -s gcc-4.8 gcc && sudo rm g++ && sudo ln -s g++-4.8 g++
+      ```
+
+      在安装完Cuda后，如果GCC和G++要切换回gcc-7和g++-7版本：
+
+      ```
+      sudo rm gcc && sudo ln -s gcc-7 gcc && sudo rm g++ && sudo ln -s g++-7 g++
       ```
 
    3. 安装Cuda 9.0和对应版本cuDNN
@@ -260,7 +266,7 @@
       ```
 
       安装Cuda 9.0：
-      
+
       ```
       sudo ./cuda_9.0.176_384.81_linux.run && sudo ./cuda_9.0.176.1_linux.run && sudo ./cuda_9.0.176.2_linux.run && sudo ./cuda_9.0.176.3_linux.run && sudo ./cuda_9.0.176.4_linux.run
       ```
@@ -270,7 +276,7 @@
       ```
       tar -xzvf cudnn-9.0-linux-x64-v7.3.1.20.tgz
       ```
-      
+
       复制到`cuda-9.0`文件夹(`cuda`是安装的cuda的软链接，避免以后安装多个cuda时cudnn混乱，不要复制到`cuda`文件夹）：
 
       ```
@@ -289,7 +295,7 @@
       export PATH=/usr/local/cuda/bin${PATH:+:$PATH}}
       export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
       ```
-      
+
       使环境变量设置立即生效:
       ```
       source ~/.bashrc
@@ -304,7 +310,7 @@
       ```
       之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-8.0`里。
       查看当前系统Cuda环境：
-      
+
       ```
       nvcc -V
       ```
@@ -320,7 +326,7 @@
       ```
       sh ./cuda_7.5.18_linux.run --tar mxvf && sudo cp InstallUtils.pm /usr/lib/x86_64-linux-gnu/perl-base/ && export $PERL5LIB
       ```
-      
+
       之后安装步骤同上。注意软链接（symbolic link）选项，cuDNN复制到`cuda-7.5`里。
 
       查看当前系统Cuda环境：
@@ -328,10 +334,10 @@
       ```
       nvcc -V
       ```
-      
+
 
       切换系统Cuda环境到`cuda-7.5`：
-
+    
       ```
       sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
       ```
