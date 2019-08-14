@@ -220,13 +220,19 @@
    sudo apt install vim
    ```
 
-6. 安装Typora，Markdown编辑器
+6. 安装gdebi
+
+   ```
+   sudo apt install gdebi
+   ```
+
+7. 安装Typora，Markdown编辑器
 
    ```
    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE && sudo add-apt-repository 'deb https://typora.io/linux ./' && sudo apt update && sudo apt install typora
    ```
-   
-7. 安装显卡驱动和Cuda，例如NVIDIA（GTX 1060）驱动以及Cuda 9.0、Cuda 8.0或Cuda 7.5
+
+8. 安装显卡驱动和Cuda，例如NVIDIA（GTX 1060）驱动以及Cuda 9.0、Cuda 8.0或Cuda 7.5
 
    1. 先用系统的gcc-7安装驱动，驱动安装步骤和[链接](https://blog.csdn.net/StrugglePeach/article/details/77940490)里的类似，安装后先别安装Cuda。
 
@@ -335,14 +341,13 @@
       nvcc -V
       ```
 
-
       切换系统Cuda环境到`cuda-7.5`：
-    
+
       ```
-      sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-7.5 /usr/local/cuda
+      sudo rm -rf /usr/local/cuda && sudo ln -s /usr/local/cuda-7.5/usr/local/cuda
       ```
 
-8. 安装Anaconda 3
+9. 安装Anaconda 3
 
    从[官网](https://docs.anaconda.com/anaconda/install/linux)下载，安装：
 
@@ -355,28 +360,22 @@
    ```
    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && conda config --set show_channel_urls yes
    ```
+
+10. 安装Pytorch
    
-9. 安装Pytorch
-
    在官网选对应版本Pytorch后会有安装命令，Linux+conda+3.6+9.1的命令是：
-
+   
    ```
    conda install pytorch torchvision cuda91 -c pytorch
    ```
 
-10. 安装MATLAB R2016b
+11. 安装MATLAB R2016b
 
     按照[链接](https://blog.csdn.net/zyqblog/article/details/78938760)安装。
 
-11. 安装MatConvNet
+12. 安装MatConvNet
 
     从[链接](http://www.vlfeat.org/matconvnet/)下载`matconvnet-1.0-beta25.tar`并解压，按照[链接](https://blog.csdn.net/breeze5428/article/details/42242761)安装。
-
-12. 安装工具gdebi
-
-    ```
-    sudo apt install gdebi
-    ```
 
 13. 安装搜狗输入法
 
@@ -399,7 +398,7 @@
     ```
     sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/ && wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add - && sudo apt update && sudo apt install google-chrome-stable
     ```
-    
+
 15. 安装gnome-tweak，优化
 
     ```
@@ -426,6 +425,8 @@
 
     [Dynamic Top Bar](https://extensions.gnome.org/extension/885/dynamic-top-bar/)
 
+    [NASA APOD Wallpaper Changer](https://extensions.gnome.org/extension/1202/nasa-apod/)
+
     [Show Applications](https://extensions.gnome.org/extension/812/show-applications/) 
 
     [Show Desktop Button](https://extensions.gnome.org/extension/1194/show-desktop-button/)
@@ -439,7 +440,7 @@
     ```
     sudo add-apt-repository ppa:simonschneegans/testing && sudo apt update && sudo apt install gnome-pie
     ```
-    
+
 18. 安装Okular，PDF阅读器
 
     ```
@@ -491,7 +492,7 @@
     ```
     git clone https://github.com/lyfeyaj/sublime-text-imfix.git && cd sublime-text-imfix && ./sublime-imfix
     ```
-    
+
 26. 安装网易云音乐
 
     按照[链接](https://blog.csdn.net/weixin_40993826/article/details/80343032)的方法安装。
@@ -507,13 +508,13 @@
     ```
     sudo vim /usr/share/applications/netease-cloud-music.desktop
     ```
-    
+
     将`Exec`行改为：
 
     ```
     Exec=env LD_LIBRARY_PATH=/opt/Qt5.8.0/5.8/gcc_64/lib netease-cloud-music %U --no-sandbox
     ```
-    
+
 27. 安装TeamViewer
 
     [官网](https://www.teamviewer.com/zhcn/download/linux/)下载安装。如果被误诊断为商业用途，可以通过卸载，修改Mac地址，重新安装解决。
@@ -573,14 +574,14 @@
     ```
     sudo add-apt-repository ppa:persepolis/ppa && sudo apt update && sudo apt install persepolis
     ```
-    
+
     Chrome安装扩展程序：`Persepolis Download Manager Integration`。
 
-32. VirtualBox虚拟机安装Windows 10
+31. VirtualBox虚拟机安装Windows 10
 
     参考[ubuntu虚拟机安装win10图文详解](https://jingyan.baidu.com/article/5552ef47e59e8d518ffbc9a8.html)，两个系统共享文件夹的设置参考[oracle vm virtualBox共享文件夹功能怎么用](https://jingyan.baidu.com/article/925f8cb8178c49c0dde056a4.html)。
 
-33. 系统备份
+32. 系统备份
 
     参照[链接](https://blog.csdn.net/qq_35523593/article/details/78545530)，用root用户和切换到根目录。
 
