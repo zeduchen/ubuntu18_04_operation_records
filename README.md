@@ -362,12 +362,12 @@
    ```
 
 10. 安装Pytorch
-   
-   在官网选对应版本Pytorch后会有安装命令，Linux+conda+3.6+9.1的命令是：
-   
-   ```
-   conda install pytorch torchvision cuda91 -c pytorch
-   ```
+
+    在官网选对应版本Pytorch后会有安装命令，如Linux+conda+3.6+9.1的命令是：
+
+    ```
+    conda install pytorch torchvision cuda91 -c pytorch
+    ```
 
 11. 安装MATLAB R2016b
 
@@ -561,9 +561,9 @@
        pre-up ifconfig eno1 hw ether d2:55:4f:5d:74:d1
        ```
 
-28. 安装QQ、WeChat、Tim
+28. 安装QQ、WeChat、Tim等
 
-    按照[链接](https://github.com/wszqkzqk/deepin-wine-ubuntu)安装。
+    按照[eepin-wine-ubuntu](https://github.com/wszqkzqk/deepin-wine-ubuntu)安装。或者按照[deepin-wine](https://github.com/zq1997/deepin-wine)安装，更方便。
 
 29. 安装VLC视频播放器
 
